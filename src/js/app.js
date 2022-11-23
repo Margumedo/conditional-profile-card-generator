@@ -26,21 +26,33 @@ function render(variables = {}) {
   console.log("These are the current variables: ", variables); //print on the console
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
+  if (variables.background)
+    variables.background =
+      "https://www.umbrellaconsultants.com/files/resources/outer-banks-web-development-hosting.jpg";
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  if (variables.name == null) variables.name = "Your name";
+  if (variables.lastname == null) variables.lastname = "Your lastname";
+  if (variables.role == null) variables.role = "Your Role";
+  if (variables.city == null) variables.city = "Your City";
+  if (variables.country == null) variables.country = "Your Country";
+  if (variables.twitter == null) variables.twitter = "";
+  if (variables.github == "alesanchezr") variables.github = "";
+  if (variables.linkedin == null) variables.linkedin = "";
+  if (variables.instagram == null) variables.instagram = "";
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-          <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <img src="https://avatars.githubusercontent.com/u/106536283?s=400&u=8b75cfca71bbed924d78c68aa55c609104821fc0&v=4" class="photo" />
+          <h1>${variables.name} ${variables.lastname}</h1>
+          <h2>${variables.role}</h2>
+          <h3>${variables.city},${variables.country}</h3>
+          <ul class=${variables.socialMediaPosition}>
+            <li><a href="https://twitter.com/MaicolArgumedo"><i class="fab fa-twitter"></i></a>${variables.twitter}</li>
+            <li><a href="https://github.com/Margumedo"><i class="fab fa-github"></i></a>${variables.github}</li>
+            <li><a href="https://www.linkedin.com/in/maicol-argumedo-857407140/"><i class="fab fa-linkedin"></i></a> ${variables.linkedin}</li>
+            <li><a href="https://www.instagram.com/maicstev/"><i class="fab fa-instagram"></i></a>${variables.instagram}</li>
           </ul>
         </div>
     `;
